@@ -1,0 +1,82 @@
+{
+  "name": "ValidateJSONKeys",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "payload",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -80,
+        0
+      ],
+      "id": "7561d992-f465-4244-9d46-ea18f753f076",
+      "name": "Payload"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json.payload;\n\nconst keys = [\"nome_completo\", \"email_aluno\", \"data_nascimento\", \"telefone\", \"curso_escolhido\"]\n\nconst result = keys.filter(key => !data[key]);\n\nreturn { result }"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        128,
+        0
+      ],
+      "id": "bafff78a-49ee-4d83-8c6c-a557d75c94c3",
+      "name": "ValidateJSONKeys",
+      "alwaysOutputData": true
+    }
+  ],
+  "pinData": {
+    "Payload": [
+      {
+        "json": {
+          "payload": {
+            "nome_completo": "john smith",
+            "email_aluno": "john@4blue.com.br",
+            "data_nascimento": "28/02/2020",
+            "telefone": "(11) 99999-9999",
+            "curso_escolhido": "Business"
+          }
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Payload": {
+      "main": [
+        [
+          {
+            "node": "ValidateJSONKeys",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ValidateJSONKeys": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "17c5c8f9-6df4-429c-8edf-d9628df1ca53",
+  "meta": {
+    "instanceId": "dc0bcbaed5942825d40eb7dd9dcbb6ab0108046af92a3af9d5e04ea54a24a948"
+  },
+  "id": "tqzTk3YaPsn0tvyT",
+  "tags": []
+}

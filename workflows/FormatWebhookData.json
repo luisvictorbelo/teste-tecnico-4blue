@@ -1,0 +1,102 @@
+{
+  "name": "FormatWebhookData",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "payload",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8363b557-494b-4f4f-b9ea-501179b4924a",
+      "name": "Payload"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f048afb1-7176-42e6-bb6d-ba3499c9aa1d",
+              "name": "payload.nome_completo",
+              "value": "={{ $json.payload.nome_completo.trim().split(\" \").map(name => name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()).join(' ') }}",
+              "type": "string"
+            },
+            {
+              "id": "9115eb77-739f-4da5-b1ec-7f0539b06976",
+              "name": "payload.telefone",
+              "value": "={{ $json.payload.telefone.replaceAll(/[() \\-]/g, '')}}",
+              "type": "string"
+            },
+            {
+              "id": "b65b2608-6742-43bd-9299-c45bed9febc5",
+              "name": "payload.data_nascimento",
+              "value": "={{ DateTime.fromFormat($json.payload.data_nascimento, \"dd/MM/yyyy\").toFormat(\"yyyy-MM-dd\") }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        0
+      ],
+      "id": "db9efa55-9b2c-4b5b-85b1-8e50aa150ce1",
+      "name": "FormatFields"
+    }
+  ],
+  "pinData": {
+    "Payload": [
+      {
+        "json": {
+          "payload": {
+            "nome_completo": "john smith",
+            "email_aluno": "john@4blue.com.br",
+            "data_nascimento": "28/02/2020",
+            "telefone": "(11) 99999-9999",
+            "curso_escolhido": "Tech"
+          }
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Payload": {
+      "main": [
+        [
+          {
+            "node": "FormatFields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Sao_Paulo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "f7001a87-a367-49fd-88c1-e3d560f37b53",
+  "meta": {
+    "instanceId": "dc0bcbaed5942825d40eb7dd9dcbb6ab0108046af92a3af9d5e04ea54a24a948"
+  },
+  "id": "lXXBQUtFf2FGhiys",
+  "tags": []
+}

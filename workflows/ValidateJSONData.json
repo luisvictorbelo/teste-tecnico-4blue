@@ -1,0 +1,76 @@
+{
+  "name": "ValidateJSONData",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "payload",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a82852e3-33be-4765-b6b1-520a5d11388b",
+      "name": "Payload"
+    },
+    {
+      "parameters": {
+        "jsCode": "const { nome_completo, email_aluno, data_nascimento, telefone, curso_escolhido } = $input.first().json.payload;\n\nconst nomeRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\\s]{2,100}$/;\nconst emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/;\nconst dataRegex = /^(?:(?:0[1-9]|[12][0-9]|3[01])\\/(?:0[1-9]|1[0-2])\\/(?:19|20)\\d{2})$/;\nconst telefoneRegex = /^\\(?\\d{2}\\)?\\s?\\d{5}-?\\d{4}$/;\nconst cursoRegex = /^[a-zA-Z]+$/;\n\nconsole.log(telefone.trim())\n\nif (!nomeRegex.test(nome_completo.trim())) {\n  return { result: { error:  \"Nome invalido\", data: nome_completo } };\n}\n\nif (!emailRegex.test(email_aluno.trim())) {\n  return { result: { error: \"Email invalido\", data: email_aluno } };\n}\n\nif (!dataRegex.test(data_nascimento.trim())) {\n  return { resut: { error: \"Data invalida\", data: data_nascimento } };\n}\n\nif (!telefoneRegex.test(telefone.trim())) {\n  return { result: { error: \"Numero de telefone invalido\", data: telefone } };\n}\n\nif (!cursoRegex.test(curso_escolhido.trim())) {\n  return { result: { error: \"Curso invalido\", data: curso_escolhido } }\n}\n\nreturn { result: \"ok\" }"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "dacc321d-0321-4e2d-9d7e-2b6d62c30ed9",
+      "name": "ValidateJSONData"
+    }
+  ],
+  "pinData": {
+    "Payload": [
+      {
+        "json": {
+          "payload": {
+            "nome_completo": "john3 smith",
+            "email_aluno": "john@4blue.com.br",
+            "data_nascimento": "28/02/2020",
+            "telefone": "(11) 99999-9999",
+            "curso_escolhido": "Business"
+          }
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Payload": {
+      "main": [
+        [
+          {
+            "node": "ValidateJSONData",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "9d171424-18b3-40e7-b409-43fdcdcef366",
+  "meta": {
+    "instanceId": "dc0bcbaed5942825d40eb7dd9dcbb6ab0108046af92a3af9d5e04ea54a24a948"
+  },
+  "id": "SNfAhLbVdBOjZBqe",
+  "tags": []
+}

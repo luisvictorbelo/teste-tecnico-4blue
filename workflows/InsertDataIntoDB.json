@@ -1,0 +1,365 @@
+{
+  "name": "InsertDataIntoDB",
+  "nodes": [
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "H5zTiy0uPXVKewK1",
+          "mode": "list",
+          "cachedResultName": "matriculas_biz",
+          "cachedResultUrl": "/projects/gZyTQhL6wqryuBf4/datatables/H5zTiy0uPXVKewK1"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nome": "={{ $json.payload.nome_completo }}",
+            "Email": "={{ $json.payload.email_aluno }}",
+            "Data_Nascimento": "={{ $json.payload.data_nascimento }}",
+            "Telefone": "={{ $json.payload.telefone }}",
+            "Curso": "={{ $json.payload.curso_escolhido }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Data_Nascimento",
+              "displayName": "Data_Nascimento",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Telefone",
+              "displayName": "Telefone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Curso",
+              "displayName": "Curso",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "optimizeBulk": false
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        624,
+        -192
+      ],
+      "id": "4e445da6-32ca-42df-bf1b-6481b46b0558",
+      "name": "InsertInBizDB"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "4rYbysxeZQSGxydy",
+          "mode": "list",
+          "cachedResultName": "matriculas_tech",
+          "cachedResultUrl": "/projects/gZyTQhL6wqryuBf4/datatables/4rYbysxeZQSGxydy"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nome": "={{ $json.payload.nome_completo }}",
+            "Email": "={{ $json.payload.email_aluno }}",
+            "Data_Nascimento": "={{ $json.payload.data_nascimento }}",
+            "Telefone": "={{ $json.payload.telefone }}",
+            "Curso": "={{ $json.payload.curso_escolhido }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Data_Nascimento",
+              "displayName": "Data_Nascimento",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Telefone",
+              "displayName": "Telefone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Curso",
+              "displayName": "Curso",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "optimizeBulk": false
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        624,
+        0
+      ],
+      "id": "96a04e7d-0e7f-4080-b330-b0a06734b510",
+      "name": "InsertInTechDB"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "payload",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "id": "89e9ac3b-6b66-43e8-a2dc-52804a18ab8d",
+      "typeVersion": 1.1,
+      "name": "Payload",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        176,
+        -96
+      ]
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        848,
+        0
+      ],
+      "id": "9dcf4748-f674-4d47-9e2b-2d7391ac29b4",
+      "name": "BackToMain"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        848,
+        -192
+      ],
+      "id": "a75040d6-d935-4ba2-975c-a149f8094ad2",
+      "name": "BackToMain1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.payload.curso_escolhido.trim().toLowerCase() }}",
+                    "rightValue": "business",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "b64e5483-cc76-4876-8956-e4533ef32872"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Business"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3f6230e4-9856-4622-8f63-ed883e9bf6a4",
+                    "leftValue": "={{ $json.payload.curso_escolhido.trim().toLowerCase() }}",
+                    "rightValue": "tech",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Tech"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        400,
+        -96
+      ],
+      "id": "1e083ce6-0cf0-43a1-b4cc-814876152107",
+      "name": "SwitchCourse"
+    }
+  ],
+  "pinData": {
+    "Payload": [
+      {
+        "json": {
+          "payload": {
+            "nome_completo": "John Smith",
+            "email_aluno": "john@4blue.com.br",
+            "data_nascimento": "28/02/2020",
+            "telefone": "11999999999",
+            "curso_escolhido": "Business"
+          }
+        }
+      }
+    ]
+  },
+  "connections": {
+    "InsertInTechDB": {
+      "main": [
+        [
+          {
+            "node": "BackToMain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "InsertInBizDB": {
+      "main": [
+        [
+          {
+            "node": "BackToMain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Payload": {
+      "main": [
+        [
+          {
+            "node": "SwitchCourse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SwitchCourse": {
+      "main": [
+        [
+          {
+            "node": "InsertInBizDB",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "InsertInTechDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "131bb242-d3c9-4b86-a83a-3e395bb5e410",
+  "meta": {
+    "instanceId": "dc0bcbaed5942825d40eb7dd9dcbb6ab0108046af92a3af9d5e04ea54a24a948"
+  },
+  "id": "Kg1FzAnTqHXseZ9S",
+  "tags": []
+}
